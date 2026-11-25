@@ -5,397 +5,397 @@ counterfind: 200 inputs and outputs, from real runs (io/ios.pl has the same as P
 2. differs(len_append, [4,3,2])
    => false
 3. plunit_test(sum_fold, [4,4])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([4,4], Out), Out == 8.   % the rewrite gave 8\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 8\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[4,4],C),C==8.\n:- end_tests(sum_fold).\n"
 4. counterexample(sum_fold, 3)
    => none
 5. differs(last_rev, [3,0,4,1,1])
    => false
 6. plunit_test(sum_fold, [4,2,2,3])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([4,2,2,3], Out), Out == 11.   % the rewrite gave 11\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 11\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[4,2,2,3],C),C==11.\n:- end_tests(sum_fold).\n"
 7. counterexample(rev_rev, 0)
    => none
 8. differs(max_first, [0,1,1,1])
    => true
 9. plunit_test(sort_for_msort, [])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([], Out), Out == [].   % the rewrite gave []\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave []\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[],C),C==[].\n:- end_tests(sort_for_msort).\n"
 10. counterexample(last_rev, 0)
    => none
 11. differs(max_first, [4,3,4])
    => false
 12. plunit_test(sub_comm, [2,2,4])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([2,2,4], Out), Out == 4.   % the rewrite gave -8\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -8\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[2,2,4],F),F==4.\n:- end_tests(sub_comm).\n"
 13. counterexample(rev_rev, 4)
    => none
 14. differs(rev_rev, [])
    => false
 15. plunit_test(sum_fold, [4,3,0,3])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([4,3,0,3], Out), Out == 10.   % the rewrite gave 10\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 10\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[4,3,0,3],C),C==10.\n:- end_tests(sum_fold).\n"
 16. counterexample(sum_fold, 1)
    => none
 17. differs(sort_for_msort, [3,0])
    => false
 18. plunit_test(sub_comm, [2,3,2,1])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([2,3,2,1], Out), Out == 0.   % the rewrite gave -8\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -8\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[2,3,2,1],F),F==0.\n:- end_tests(sub_comm).\n"
 19. counterexample(sum_fold, 2)
    => none
 20. differs(last_rev, [3,2,1])
    => false
 21. plunit_test(len_append, [0])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([0], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 2\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[0],D),D==2.\n:- end_tests(len_append).\n"
 22. counterexample(len_append, 2)
    => none
 23. differs(sum_fold, [0,1,2])
    => false
 24. plunit_test(max_first, [2,1,1,3,4])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([2,1,1,3,4], Out), Out == 4.   % the rewrite gave 2\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 2\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[2,1,1,3,4],C),C==4.\n:- end_tests(max_first).\n"
 25. counterexample(last_rev, 4)
    => none
 26. differs(max_first, [1,4,1,0])
    => true
 27. plunit_test(rev_rev, [4,4])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([4,4], Out), Out == [4,4].   % the rewrite gave [4,4]\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave [4,4]\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[4,4],D),D==[4,4].\n:- end_tests(rev_rev).\n"
 28. counterexample(sub_comm, 0)
    => none
 29. differs(rev_rev, [])
    => false
 30. plunit_test(sum_fold, [0,1,2,0])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([0,1,2,0], Out), Out == 3.   % the rewrite gave 3\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 3\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[0,1,2,0],C),C==3.\n:- end_tests(sum_fold).\n"
 31. counterexample(sum_fold, 0)
    => none
 32. differs(len_append, [])
    => false
 33. plunit_test(len_append, [1,2,3,3])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([1,2,3,3], Out), Out == 8.   % the rewrite gave 8\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 8\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[1,2,3,3],D),D==8.\n:- end_tests(len_append).\n"
 34. counterexample(sum_fold, 4)
    => none
 35. differs(sort_for_msort, [2,2,2,4])
    => true
 36. plunit_test(last_rev, [4])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([4], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 4\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[4],D),D==4.\n:- end_tests(last_rev).\n"
 37. counterexample(len_append, 3)
    => none
 38. differs(sub_comm, [0,4])
    => true
 39. plunit_test(last_rev, [1,0])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([1,0], Out), Out == 0.   % the rewrite gave 0\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 0\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[1,0],D),D==0.\n:- end_tests(last_rev).\n"
 40. counterexample(sub_comm, 4)
    => input([1])
 41. differs(sum_fold, [])
    => false
 42. plunit_test(len_append, [4,0,4,2])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([4,0,4,2], Out), Out == 8.   % the rewrite gave 8\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 8\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[4,0,4,2],D),D==8.\n:- end_tests(len_append).\n"
 43. counterexample(len_append, 0)
    => none
 44. differs(sort_for_msort, [3])
    => false
 45. plunit_test(len_append, [4,2,4])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([4,2,4], Out), Out == 6.   % the rewrite gave 6\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 6\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[4,2,4],D),D==6.\n:- end_tests(len_append).\n"
 46. counterexample(rev_rev, 1)
    => none
 47. differs(rev_rev, [0,0,4,0])
    => false
 48. plunit_test(sub_comm, [3,4])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([3,4], Out), Out == 1.   % the rewrite gave -7\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -7\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[3,4],F),F==1.\n:- end_tests(sub_comm).\n"
 49. counterexample(sub_comm, 4)
    => input([1])
 50. differs(max_first, [4])
    => false
 51. plunit_test(len_append, [3,1])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([3,1], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 4\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[3,1],D),D==4.\n:- end_tests(len_append).\n"
 52. counterexample(max_first, 2)
    => input([0,1])
 53. differs(len_append, [0])
    => false
 54. plunit_test(rev_rev, [1,2])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([1,2], Out), Out == [1,2].   % the rewrite gave [1,2]\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave [1,2]\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[1,2],D),D==[1,2].\n:- end_tests(rev_rev).\n"
 55. counterexample(last_rev, 2)
    => none
 56. differs(rev_rev, [])
    => false
 57. plunit_test(sum_fold, [2,3,1,1])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([2,3,1,1], Out), Out == 7.   % the rewrite gave 7\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 7\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[2,3,1,1],C),C==7.\n:- end_tests(sum_fold).\n"
 58. counterexample(len_append, 0)
    => none
 59. differs(rev_rev, [1])
    => false
 60. plunit_test(max_first, [2,2,2,0,0])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([2,2,2,0,0], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 2\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[2,2,2,0,0],C),C==2.\n:- end_tests(max_first).\n"
 61. counterexample(sum_fold, 3)
    => none
 62. differs(last_rev, [])
    => false
 63. plunit_test(len_append, [1,4])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([1,4], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 4\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[1,4],D),D==4.\n:- end_tests(len_append).\n"
 64. counterexample(last_rev, 3)
    => none
 65. differs(max_first, [])
    => false
 66. plunit_test(sub_comm, [4,0,0,0])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([4,0,0,0], Out), Out == -4.   % the rewrite gave -4\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -4\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[4,0,0,0],F),F== -4.\n:- end_tests(sub_comm).\n"
 67. counterexample(max_first, 0)
    => none
 68. differs(len_append, [4,2])
    => false
 69. plunit_test(len_append, [4,4])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([4,4], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 4\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[4,4],D),D==4.\n:- end_tests(len_append).\n"
 70. counterexample(sum_fold, 3)
    => none
 71. differs(rev_rev, [])
    => false
 72. plunit_test(sub_comm, [4])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([4], Out), Out == 4.   % the rewrite gave -4\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -4\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[4],F),F==4.\n:- end_tests(sub_comm).\n"
 73. counterexample(rev_rev, 2)
    => none
 74. differs(last_rev, [2,1,2])
    => false
 75. plunit_test(rev_rev, [1])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([1], Out), Out == [1].   % the rewrite gave [1]\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave [1]\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[1],D),D==[1].\n:- end_tests(rev_rev).\n"
 76. counterexample(last_rev, 1)
    => none
 77. differs(len_append, [0])
    => false
 78. plunit_test(sum_fold, [])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([], Out), Out == 0.   % the rewrite gave 0\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 0\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[],C),C==0.\n:- end_tests(sum_fold).\n"
 79. counterexample(rev_rev, 4)
    => none
 80. differs(rev_rev, [4,3,1,1,4])
    => false
 81. plunit_test(rev_rev, [0,2,0])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([0,2,0], Out), Out == [0,2,0].   % the rewrite gave [0,2,0]\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave [0,2,0]\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[0,2,0],D),D==[0,2,0].\n:- end_tests(rev_rev).\n"
 82. counterexample(sub_comm, 2)
    => input([1])
 83. differs(max_first, [0,0,4,2,3])
    => true
 84. plunit_test(len_append, [4,2])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([4,2], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 4\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[4,2],D),D==4.\n:- end_tests(len_append).\n"
 85. counterexample(last_rev, 3)
    => none
 86. differs(rev_rev, [0])
    => false
 87. plunit_test(sum_fold, [4,4,4])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([4,4,4], Out), Out == 12.   % the rewrite gave 12\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 12\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[4,4,4],C),C==12.\n:- end_tests(sum_fold).\n"
 88. counterexample(rev_rev, 3)
    => none
 89. differs(sum_fold, [3,4,1,1,3])
    => false
 90. plunit_test(last_rev, [3,4,2,1,1])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([3,4,2,1,1], Out), Out == 1.   % the rewrite gave 1\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 1\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[3,4,2,1,1],D),D==1.\n:- end_tests(last_rev).\n"
 91. counterexample(sub_comm, 4)
    => input([1])
 92. differs(sub_comm, [1,1])
    => true
 93. plunit_test(last_rev, [1,4,3,1,0])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([1,4,3,1,0], Out), Out == 0.   % the rewrite gave 0\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 0\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[1,4,3,1,0],D),D==0.\n:- end_tests(last_rev).\n"
 94. counterexample(max_first, 4)
    => input([0,1])
 95. differs(max_first, [3,2])
    => false
 96. plunit_test(sort_for_msort, [1,1])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([1,1], Out), Out == [1,1].   % the rewrite gave [1]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [1]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[1,1],C),C==[1,1].\n:- end_tests(sort_for_msort).\n"
 97. counterexample(last_rev, 1)
    => none
 98. differs(sum_fold, [])
    => false
 99. plunit_test(max_first, [1])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([1], Out), Out == 1.   % the rewrite gave 1\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 1\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[1],C),C==1.\n:- end_tests(max_first).\n"
 100. counterexample(last_rev, 4)
    => none
 101. differs(sub_comm, [4,1,2])
    => true
 102. plunit_test(sub_comm, [4,2])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([4,2], Out), Out == -2.   % the rewrite gave -6\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -6\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[4,2],F),F== -2.\n:- end_tests(sub_comm).\n"
 103. counterexample(len_append, 0)
    => none
 104. differs(last_rev, [])
    => false
 105. plunit_test(sum_fold, [])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([], Out), Out == 0.   % the rewrite gave 0\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 0\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[],C),C==0.\n:- end_tests(sum_fold).\n"
 106. counterexample(last_rev, 1)
    => none
 107. differs(sum_fold, [2,4,4])
    => false
 108. plunit_test(sub_comm, [2,1,1,1,2])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([2,1,1,1,2], Out), Out == 3.   % the rewrite gave -7\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -7\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[2,1,1,1,2],F),F==3.\n:- end_tests(sub_comm).\n"
 109. counterexample(max_first, 0)
    => none
 110. differs(rev_rev, [4,0,1,2,2])
    => false
 111. plunit_test(last_rev, [2,1,4,0,3])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([2,1,4,0,3], Out), Out == 3.   % the rewrite gave 3\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 3\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[2,1,4,0,3],D),D==3.\n:- end_tests(last_rev).\n"
 112. counterexample(len_append, 0)
    => none
 113. differs(last_rev, [4,1,2])
    => false
 114. plunit_test(max_first, [3,0,2])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([3,0,2], Out), Out == 3.   % the rewrite gave 3\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 3\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[3,0,2],C),C==3.\n:- end_tests(max_first).\n"
 115. counterexample(last_rev, 3)
    => none
 116. differs(rev_rev, [1,2])
    => false
 117. plunit_test(last_rev, [0,0,2])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([0,0,2], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 2\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[0,0,2],D),D==2.\n:- end_tests(last_rev).\n"
 118. counterexample(max_first, 1)
    => none
 119. differs(sort_for_msort, [4,1,2,4])
    => true
 120. plunit_test(len_append, [1,3])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([1,3], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 4\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[1,3],D),D==4.\n:- end_tests(len_append).\n"
 121. counterexample(sub_comm, 2)
    => input([1])
 122. differs(last_rev, [0,4,1])
    => false
 123. plunit_test(sort_for_msort, [1,1])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([1,1], Out), Out == [1,1].   % the rewrite gave [1]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [1]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[1,1],C),C==[1,1].\n:- end_tests(sort_for_msort).\n"
 124. counterexample(len_append, 1)
    => none
 125. differs(sum_fold, [0])
    => false
 126. plunit_test(rev_rev, [])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([], Out), Out == [].   % the rewrite gave []\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave []\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[],D),D==[].\n:- end_tests(rev_rev).\n"
 127. counterexample(rev_rev, 0)
    => none
 128. differs(len_append, [3,3])
    => false
 129. plunit_test(sub_comm, [4,3,1,0,2])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([4,3,1,0,2], Out), Out == 4.   % the rewrite gave -10\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -10\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[4,3,1,0,2],F),F==4.\n:- end_tests(sub_comm).\n"
 130. counterexample(rev_rev, 4)
    => none
 131. differs(max_first, [2,2])
    => false
 132. plunit_test(rev_rev, [3])
-   => ":- begin_tests(rev_rev).\ntest(rev_rev_counterexample) :- original([3], Out), Out == [3].   % the rewrite gave [3]\n:- end_tests(rev_rev).\n"
+   => ":- begin_tests(rev_rev).\n% the rewrite gave [3]\ntest(rev_rev_counterexample):-call([A,B]>>(reverse(A,C),reverse(C,B)),[3],D),D==[3].\n:- end_tests(rev_rev).\n"
 133. counterexample(last_rev, 3)
    => none
 134. differs(max_first, [1,3,4])
    => true
 135. plunit_test(len_append, [0,4,0])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([0,4,0], Out), Out == 6.   % the rewrite gave 6\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 6\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[0,4,0],D),D==6.\n:- end_tests(len_append).\n"
 136. counterexample(rev_rev, 4)
    => none
 137. differs(len_append, [3,3,4,3])
    => false
 138. plunit_test(sum_fold, [4,2,0,0,3])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([4,2,0,0,3], Out), Out == 9.   % the rewrite gave 9\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 9\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[4,2,0,0,3],C),C==9.\n:- end_tests(sum_fold).\n"
 139. counterexample(sub_comm, 0)
    => none
 140. differs(len_append, [4,3,3,4,0])
    => false
 141. plunit_test(sub_comm, [3,1])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([3,1], Out), Out == -2.   % the rewrite gave -4\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -4\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[3,1],F),F== -2.\n:- end_tests(sub_comm).\n"
 142. counterexample(rev_rev, 0)
    => none
 143. differs(sub_comm, [4,3])
    => true
 144. plunit_test(last_rev, [2,4,3,2])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([2,4,3,2], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 2\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[2,4,3,2],D),D==2.\n:- end_tests(last_rev).\n"
 145. counterexample(rev_rev, 0)
    => none
 146. differs(rev_rev, [1])
    => false
 147. plunit_test(len_append, [2])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([2], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 2\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[2],D),D==2.\n:- end_tests(len_append).\n"
 148. counterexample(last_rev, 0)
    => none
 149. differs(len_append, [2,2,3,1,3])
    => false
 150. plunit_test(max_first, [])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([], Out), Out == none.   % the rewrite gave none\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave none\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[],C),C==none.\n:- end_tests(max_first).\n"
 151. counterexample(rev_rev, 2)
    => none
 152. differs(max_first, [4,3,2,1])
    => false
 153. plunit_test(len_append, [1])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([1], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 2\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[1],D),D==2.\n:- end_tests(len_append).\n"
 154. counterexample(sum_fold, 1)
    => none
 155. differs(sub_comm, [1])
    => true
 156. plunit_test(sort_for_msort, [3,3,2,0])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([3,3,2,0], Out), Out == [0,2,3,3].   % the rewrite gave [0,2,3]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [0,2,3]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[3,3,2,0],C),C==[0,2,3,3].\n:- end_tests(sort_for_msort).\n"
 157. counterexample(max_first, 1)
    => none
 158. differs(rev_rev, [2,4,0])
    => false
 159. plunit_test(sort_for_msort, [1,0])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([1,0], Out), Out == [0,1].   % the rewrite gave [0,1]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [0,1]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[1,0],C),C==[0,1].\n:- end_tests(sort_for_msort).\n"
 160. counterexample(rev_rev, 2)
    => none
 161. differs(last_rev, [1])
    => false
 162. plunit_test(sort_for_msort, [1,2,3,0])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([1,2,3,0], Out), Out == [0,1,2,3].   % the rewrite gave [0,1,2,3]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [0,1,2,3]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[1,2,3,0],C),C==[0,1,2,3].\n:- end_tests(sort_for_msort).\n"
 163. counterexample(len_append, 0)
    => none
 164. differs(sum_fold, [4,1,1])
    => false
 165. plunit_test(max_first, [4,3,0,4,3])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([4,3,0,4,3], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 4\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[4,3,0,4,3],C),C==4.\n:- end_tests(max_first).\n"
 166. counterexample(rev_rev, 2)
    => none
 167. differs(last_rev, [])
    => false
 168. plunit_test(max_first, [2,0,4,2,4])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([2,0,4,2,4], Out), Out == 4.   % the rewrite gave 2\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 2\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[2,0,4,2,4],C),C==4.\n:- end_tests(max_first).\n"
 169. counterexample(sum_fold, 0)
    => none
 170. differs(last_rev, [2,3,3])
    => false
 171. plunit_test(max_first, [1])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([1], Out), Out == 1.   % the rewrite gave 1\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 1\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[1],C),C==1.\n:- end_tests(max_first).\n"
 172. counterexample(rev_rev, 4)
    => none
 173. differs(sort_for_msort, [])
    => false
 174. plunit_test(sub_comm, [4,0])
-   => ":- begin_tests(sub_comm).\ntest(sub_comm_counterexample) :- original([4,0], Out), Out == -4.   % the rewrite gave -4\n:- end_tests(sub_comm).\n"
+   => ":- begin_tests(sub_comm).\n% the rewrite gave -4\ntest(sub_comm_counterexample):-call([A,B]>>foldl([C,D,E]>>(E is C-D),A,0,B),[4,0],F),F== -4.\n:- end_tests(sub_comm).\n"
 175. counterexample(sum_fold, 3)
    => none
 176. differs(sort_for_msort, [2,0])
    => false
 177. plunit_test(last_rev, [])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([], Out), Out == none.   % the rewrite gave none\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave none\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[],D),D==none.\n:- end_tests(last_rev).\n"
 178. counterexample(last_rev, 4)
    => none
 179. differs(sub_comm, [2,0])
    => false
 180. plunit_test(len_append, [1])
-   => ":- begin_tests(len_append).\ntest(len_append_counterexample) :- original([1], Out), Out == 2.   % the rewrite gave 2\n:- end_tests(len_append).\n"
+   => ":- begin_tests(len_append).\n% the rewrite gave 2\ntest(len_append_counterexample):-call([A,B]>>(append(A,A,C),length(C,B)),[1],D),D==2.\n:- end_tests(len_append).\n"
 181. counterexample(sum_fold, 4)
    => none
 182. differs(sort_for_msort, [])
    => false
 183. plunit_test(last_rev, [1,3,2,4])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([1,3,2,4], Out), Out == 4.   % the rewrite gave 4\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave 4\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[1,3,2,4],D),D==4.\n:- end_tests(last_rev).\n"
 184. counterexample(len_append, 4)
    => none
 185. differs(sort_for_msort, [4,0,0,0])
    => true
 186. plunit_test(sum_fold, [2,0,2,1,2])
-   => ":- begin_tests(sum_fold).\ntest(sum_fold_counterexample) :- original([2,0,2,1,2], Out), Out == 7.   % the rewrite gave 7\n:- end_tests(sum_fold).\n"
+   => ":- begin_tests(sum_fold).\n% the rewrite gave 7\ntest(sum_fold_counterexample):-call([A,B]>>sum_list(A,B),[2,0,2,1,2],C),C==7.\n:- end_tests(sum_fold).\n"
 187. counterexample(len_append, 1)
    => none
 188. differs(max_first, [4,3,2,3])
    => false
 189. plunit_test(sort_for_msort, [0,2,2,1])
-   => ":- begin_tests(sort_for_msort).\ntest(sort_for_msort_counterexample) :- original([0,2,2,1], Out), Out == [0,1,2,2].   % the rewrite gave [0,1,2]\n:- end_tests(sort_for_msort).\n"
+   => ":- begin_tests(sort_for_msort).\n% the rewrite gave [0,1,2]\ntest(sort_for_msort_counterexample):-call([A,B]>>msort(A,B),[0,2,2,1],C),C==[0,1,2,2].\n:- end_tests(sort_for_msort).\n"
 190. counterexample(max_first, 4)
    => input([0,1])
 191. differs(sum_fold, [2,2,4])
    => false
 192. plunit_test(max_first, [])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([], Out), Out == none.   % the rewrite gave none\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave none\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[],C),C==none.\n:- end_tests(max_first).\n"
 193. counterexample(sort_for_msort, 2)
    => input([0,0])
 194. differs(max_first, [3,2,2,4])
    => true
 195. plunit_test(max_first, [2,4,1,0,4])
-   => ":- begin_tests(max_first).\ntest(max_first_counterexample) :- original([2,4,1,0,4], Out), Out == 4.   % the rewrite gave 2\n:- end_tests(max_first).\n"
+   => ":- begin_tests(max_first).\n% the rewrite gave 2\ntest(max_first_counterexample):-call([A,B]>>(A==[]->B=none;max_list(A,B)),[2,4,1,0,4],C),C==4.\n:- end_tests(max_first).\n"
 196. counterexample(sub_comm, 1)
    => input([1])
 197. differs(sub_comm, [4,4,3,0])
    => true
 198. plunit_test(last_rev, [])
-   => ":- begin_tests(last_rev).\ntest(last_rev_counterexample) :- original([], Out), Out == none.   % the rewrite gave none\n:- end_tests(last_rev).\n"
+   => ":- begin_tests(last_rev).\n% the rewrite gave none\ntest(last_rev_counterexample):-call([A,B]>>(last(A,C)->B=C;B=none),[],D),D==none.\n:- end_tests(last_rev).\n"
 199. counterexample(sum_fold, 0)
    => none
 200. differs(sub_comm, [0,0])

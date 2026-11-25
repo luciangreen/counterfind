@@ -29,6 +29,10 @@ counterexample(Name, Max, R) :- ( inputs(Max, [0, 1, 2], In), differs(Name, In) 
 
 size(L, N) :- length(L, N).
 
-% plunit_test(+Rewrite, +Input, -Text): a test that the original gives what the rewrite must match.
+% plunit_test(+Rewrite, +Input, -Text): a PlUnit test that runs as written: its body calls the original
+% predicate itself (not a helper that would have to be defined elsewhere) on the input, and checks the
+% output the rewrite must match. Each line reads back as a Prolog term.
 plunit_test(Name, In, Text) :- rewrite(Name, P, Q), run(P, In, A), run(Q, In, B),
-    format(string(Text), ":- begin_tests(~w).~ntest(~w_counterexample) :- original(~q, Out), Out == ~q.   % the rewrite gave ~q~n:- end_tests(~w).~n", [Name, Name, In, A, B, Name]).
+    atom_concat(Name, '_counterexample', T), Clause = (test(T) :- call(P, In, Out), Out == A),
+    copy_term(Clause, C), numbervars(C, 0, _),
+    format(string(Text), ":- begin_tests(~w).~n% the rewrite gave ~q~n~q.~n:- end_tests(~w).~n", [Name, B, C, Name]).
