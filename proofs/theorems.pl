@@ -29,3 +29,10 @@ theorem(known_rewrites_classified) :-
 % 5. Searching further never undoes a counterexample: if one is found within M, the same one is found within M+1.
 theorem(bound_monotone) :-
     forall(( rewrite(N, _, _), between(0, 2, M), counterexample(N, M, input(I)), M1 is M + 1 ), counterexample(N, M1, input(I))).
+
+% 6. The written test runs as written: its test clause reads back, its body passes with the original, and
+%    fails when the rewrite is put in the original's place.
+theorem(written_tests_run) :-
+    forall(( member(N, [sort_for_msort, max_first, sub_comm]), counterexample(N, 3, input(I)) ),
+           ( plunit_test(N, I, Text), split_string(Text, "\n", "", Lines), nth1(3, Lines, L), term_string(Cl, L),
+             Cl = (test(_) :- Body), call(Body), Body = (call(_, I2, O), O == A), rewrite(N, _, Q), call(Q, I2, O2), O2 \== A )).
